@@ -1,0 +1,36 @@
+# Compiled object files
+*.o
+*.obj
+
+# Compiled binaries / executables
+mini_unionfs
+*.out
+*.exe
+
+# Static and shared libraries
+*.a
+*.so
+*.so.*
+*.dylib
+
+# Debug and core dumps
+*.dSYM/
+core
+core.*
+
+# Build directories
+build/
+bin/
+
+# Dependency / make artifacts
+*.d
+*.deps
+
+# Editor and OS junk
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
