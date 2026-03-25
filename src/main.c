@@ -30,7 +30,7 @@ static int unionfs_access(const char *path, int mask) {
     return 0;
 }
 
-static struct fuse_operations unionfs_oper = {
+struct fuse_operations unionfs_oper = {
     .getattr  = unionfs_getattr,
     .access   = unionfs_access,
 };
