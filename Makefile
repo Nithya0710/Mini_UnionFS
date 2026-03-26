@@ -1,15 +1,37 @@
+# Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -g `pkg-config --cflags fuse3`
-LIBS = `pkg-config --libs fuse3`
+CFLAGS = -Wall -Wextra -g `pkg-config fuse3 --cflags`
+LDFLAGS = `pkg-config fuse3 --libs`
 
-all: mini_unionfs
+# Target binary
+TARGET = mini_unionfs
 
-mini_unionfs: src/main.c src/resolve_path.c
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+# Source files
+SRC = main.c
+OBJ = $(SRC:.c=.o)
 
-test_resolve: tests/test_resolve_path.c
-	$(CC) -Wall -g -o test_resolve tests/test_resolve_path.c
-	./test_resolve
+# Default rule
+all: $(TARGET)
 
+# Build target
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
+
+# Compile object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean build files
 clean:
-	rm -f mini_unionfs test_resolve
+	rm -f $(OBJ) $(TARGET)
+
+# Run (example mount)
+run:
+	mkdir -p mnt
+	./$(TARGET) mnt
+
+# Unmount
+unmount:
+	fusermount3 -u mnt
+
+.PHONY: all clean run unmount
