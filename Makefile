@@ -7,7 +7,7 @@ LDFLAGS = `pkg-config fuse3 --libs`
 TARGET = mini_unionfs
 
 # Source files
-SRC = main.c
+SRC = src/main.c src/resolve_path.c
 OBJ = $(SRC:.c=.o)
 
 # Default rule
