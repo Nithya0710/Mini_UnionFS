@@ -1,5 +1,3 @@
-
-<<<<<<< Member-D-Day-1-updates
 #include <fuse3/fuse.h>
 #include <stdio.h>
 #include <string.h>
@@ -120,6 +118,3 @@ struct fuse_operations unionfs_oper = {
     .getattr = unionfs_getattr,
     .readdir = unionfs_readdir,
 };
-=======
->>>>>>> main
-
